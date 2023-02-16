@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.426">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Green Belts Capsule – signature_greenbelts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Green Belts Capsule</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Results</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_acquisition.html">Data Acquisition</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-signature-of-greenbelts" id="toc-the-signature-of-greenbelts" class="nav-link active" data-scroll-target="#the-signature-of-greenbelts">The signature of Greenbelts</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#greenbelts" id="toc-greenbelts" class="nav-link" data-scroll-target="#greenbelts">Greenbelts</a></li>
+  <li><a href="#signatures" id="toc-signatures" class="nav-link" data-scroll-target="#signatures">Signatures</a></li>
+  </ul></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#newcastle" id="toc-newcastle" class="nav-link" data-scroll-target="#newcastle">Newcastle</a></li>
+  </ul></li>
+  <li><a href="#england" id="toc-england" class="nav-link" data-scroll-target="#england">England</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="the-signature-of-greenbelts" class="level1">
+<h1>The signature of Greenbelts</h1>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas, pandas</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyogrio <span class="im">import</span> read_dataframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="greenbelts" class="level3">
+<h3 class="anchored" data-anchor-id="greenbelts">Greenbelts</h3>
+<p>Download if not available:</p>
+<div class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gb_url <span class="op">=</span> (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://maps.communities.gov.uk/geoserver/dclg_inspire/ows'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'?service=WFS&amp;version=2.0.0&amp;request=GetFeature&amp;'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'typeName=dclg_inspire:England_Green_Belt_2017-18_WGS84&amp;'</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'outputFormat=json&amp;srsName=EPSG:27700'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Read up:</p>
+<div class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> read_dataframe(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    gb_url,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#where="GB_Name='Merseyside and Greater Manchester'"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 4.46 s, sys: 491 ms, total: 4.95 s
+Wall time: 16.3 s</code></pre>
+</div>
+</div>
+</section>
+<section id="signatures" class="level3">
+<h3 class="anchored" data-anchor-id="signatures">Signatures</h3>
+<ul>
+<li>Pull data if not present</li>
+</ul>
+<div class="cell" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">open</span>(<span class="st">'signatures.gpkg'</span>).close()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span> wget https:<span class="op">//</span>figshare.com<span class="op">/</span>ndownloader<span class="op">/</span>files<span class="op">/</span><span class="dv">30904861</span> <span class="op">-</span>O signatures.gpkg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Read and clip</li>
+</ul>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_clip(geom, p<span class="op">=</span><span class="st">'signatures.gpkg'</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> geopandas.read_file(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        p, mask<span class="op">=</span>geom</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ).clip(geom)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.bag <span class="im">as</span> db</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.diagnostics <span class="im">import</span> ProgressBar</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>bag <span class="op">=</span> db.from_sequence(gb.geometry.tolist()).<span class="bu">map</span>(read_clip)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProgressBar():</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    clipped <span class="op">=</span> pandas.concat(bag.compute())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[                                        ] | 0% Completed |  3.0s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[########################################] | 100% Completed |  3min 21.3s</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="newcastle" class="level3">
+<h3 class="anchored" data-anchor-id="newcastle">Newcastle</h3>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> (</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    clipped</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .assign(area<span class="op">=</span>clipped.area<span class="op">/</span><span class="fl">1e6</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'type'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'area'</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>pandas.DataFrame({<span class="st">'area_SqKm'</span>: areas, <span class="st">'pct'</span>: areas <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> areas.<span class="bu">sum</span>()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>area_SqKm</th>
+      <th>pct</th>
+    </tr>
+    <tr>
+      <th>type</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Urban buffer</th>
+      <td>1159.736637</td>
+      <td>46.634218</td>
+    </tr>
+    <tr>
+      <th>Countryside agriculture</th>
+      <td>949.702936</td>
+      <td>38.188544</td>
+    </tr>
+    <tr>
+      <th>Open sprawl</th>
+      <td>276.501964</td>
+      <td>11.118432</td>
+    </tr>
+    <tr>
+      <th>Warehouse/Park land</th>
+      <td>64.006638</td>
+      <td>2.573774</td>
+    </tr>
+    <tr>
+      <th>Accessible suburbia</th>
+      <td>26.218758</td>
+      <td>1.054284</td>
+    </tr>
+    <tr>
+      <th>Wild countryside</th>
+      <td>4.106897</td>
+      <td>0.165143</td>
+    </tr>
+    <tr>
+      <th>Connected residential neighbourhoods</th>
+      <td>2.882481</td>
+      <td>0.115908</td>
+    </tr>
+    <tr>
+      <th>Dense residential neighbourhoods</th>
+      <td>2.162715</td>
+      <td>0.086965</td>
+    </tr>
+    <tr>
+      <th>Disconnected suburbia</th>
+      <td>1.517039</td>
+      <td>0.061002</td>
+    </tr>
+    <tr>
+      <th>Dense urban neighbourhoods</th>
+      <td>0.026317</td>
+      <td>0.001058</td>
+    </tr>
+    <tr>
+      <th>Gridded residential quarters</th>
+      <td>0.016737</td>
+      <td>0.000673</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>clipped.dissolve(<span class="st">'type'</span>).reset_index().explore(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">'type'</span>, categorical<span class="op">=</span><span class="va">True</span>, tiles<span class="op">=</span><span class="st">'CartoDB dark_matter'</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="england" class="level2">
+<h2 class="anchored" data-anchor-id="england">England</h2>
+<div class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clipped_all <span class="op">=</span> geopandas.read_parquet(<span class="st">'ss_clipped.pq'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> (</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    clipped_all</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    .assign(area<span class="op">=</span>clipped_all.area<span class="op">/</span><span class="fl">1e6</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'type'</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'area'</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>pandas.DataFrame({<span class="st">'area_SqKm'</span>: areas, <span class="st">'pct'</span>: areas <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> areas.<span class="bu">sum</span>()})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>area_SqKm</th>
+      <th>pct</th>
+    </tr>
+    <tr>
+      <th>type</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Urban buffer</th>
+      <td>7616.285193</td>
+      <td>47.000857</td>
+    </tr>
+    <tr>
+      <th>Countryside agriculture</th>
+      <td>7070.798905</td>
+      <td>43.634607</td>
+    </tr>
+    <tr>
+      <th>Open sprawl</th>
+      <td>828.546604</td>
+      <td>5.113044</td>
+    </tr>
+    <tr>
+      <th>Warehouse/Park land</th>
+      <td>441.630946</td>
+      <td>2.725349</td>
+    </tr>
+    <tr>
+      <th>Wild countryside</th>
+      <td>122.253761</td>
+      <td>0.754440</td>
+    </tr>
+    <tr>
+      <th>Accessible suburbia</th>
+      <td>90.120589</td>
+      <td>0.556143</td>
+    </tr>
+    <tr>
+      <th>Dense residential neighbourhoods</th>
+      <td>14.027865</td>
+      <td>0.086567</td>
+    </tr>
+    <tr>
+      <th>Disconnected suburbia</th>
+      <td>7.759982</td>
+      <td>0.047888</td>
+    </tr>
+    <tr>
+      <th>Dense urban neighbourhoods</th>
+      <td>6.503345</td>
+      <td>0.040133</td>
+    </tr>
+    <tr>
+      <th>Connected residential neighbourhoods</th>
+      <td>5.454813</td>
+      <td>0.033662</td>
+    </tr>
+    <tr>
+      <th>Hyper concentrated urbanity</th>
+      <td>0.915522</td>
+      <td>0.005650</td>
+    </tr>
+    <tr>
+      <th>Local urbanity</th>
+      <td>0.182910</td>
+      <td>0.001129</td>
+    </tr>
+    <tr>
+      <th>Gridded residential quarters</th>
+      <td>0.086033</td>
+      <td>0.000531</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>diss <span class="op">=</span> clipped.dissolve(<span class="st">'type'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 1min 3s, sys: 262 ms, total: 1min 4s
+Wall time: 1min 4s</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>geometry</th>
+      <th>id</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Accessible suburbia</th>
+      <td>MULTIPOLYGON (((345756.808 364158.178, 345757....</td>
+      <td>16693_ACS</td>
+      <td>ACS</td>
+    </tr>
+    <tr>
+      <th>Connected residential neighbourhoods</th>
+      <td>MULTIPOLYGON (((357445.040 170360.777, 357455....</td>
+      <td>87517_CRN</td>
+      <td>CRN</td>
+    </tr>
+    <tr>
+      <th>Countryside agriculture</th>
+      <td>MULTIPOLYGON (((344905.850 166541.448, 344906....</td>
+      <td>459_COA</td>
+      <td>COA</td>
+    </tr>
+    <tr>
+      <th>Dense residential neighbourhoods</th>
+      <td>MULTIPOLYGON (((321066.452 387154.549, 321067....</td>
+      <td>82049_DRN</td>
+      <td>DRN</td>
+    </tr>
+    <tr>
+      <th>Dense urban neighbourhoods</th>
+      <td>MULTIPOLYGON (((451541.205 205161.991, 451539....</td>
+      <td>93538_DUN</td>
+      <td>DUN</td>
+    </tr>
+    <tr>
+      <th>Disconnected suburbia</th>
+      <td>MULTIPOLYGON (((389295.261 287291.254, 389295....</td>
+      <td>72390_DIS</td>
+      <td>DIS</td>
+    </tr>
+    <tr>
+      <th>Gridded residential quarters</th>
+      <td>MULTIPOLYGON (((430895.112 280263.914, 430896....</td>
+      <td>57941_GRQ</td>
+      <td>GRQ</td>
+    </tr>
+    <tr>
+      <th>Hyper concentrated urbanity</th>
+      <td>MULTIPOLYGON (((581550.000 185035.000, 581759....</td>
+      <td>96691_HDU</td>
+      <td>HDU</td>
+    </tr>
+    <tr>
+      <th>Local urbanity</th>
+      <td>MULTIPOLYGON (((451614.396 205420.349, 451503....</td>
+      <td>95707_LOU</td>
+      <td>LOU</td>
+    </tr>
+    <tr>
+      <th>Open sprawl</th>
+      <td>MULTIPOLYGON (((345032.833 175629.286, 345030....</td>
+      <td>29785_OPS</td>
+      <td>OPS</td>
+    </tr>
+    <tr>
+      <th>Urban buffer</th>
+      <td>MULTIPOLYGON (((347236.760 162524.876, 347253....</td>
+      <td>64309_URB</td>
+      <td>URB</td>
+    </tr>
+    <tr>
+      <th>Warehouse/Park land</th>
+      <td>MULTIPOLYGON (((356478.202 172281.238, 356470....</td>
+      <td>50397_WAL</td>
+      <td>WAL</td>
+    </tr>
+    <tr>
+      <th>Wild countryside</th>
+      <td>MULTIPOLYGON (((374257.555 170517.166, 374267....</td>
+      <td>44107_WIC</td>
+      <td>WIC</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>diss.reset_index().plot(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">'type'</span>, categorical<span class="op">=</span><span class="va">True</span>, legend<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">18</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>&lt;AxesSubplot:&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="signature_greenbelts_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul class="task-list">
+<li><input type="checkbox" disabled="">
+Clip signatures to green belts</li>
+<li><input type="checkbox" disabled="">
+Calculate area of green belt by signature</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

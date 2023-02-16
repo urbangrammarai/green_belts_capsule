@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: docs
+  preview:
+    port: 4000
+    host: 0.0.0.0
+    browser: false
+    
+bibliography: references.bib
+
+website:
+  title: "Green Belts Capsule"
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Results
+      - data_acquisition.ipynb
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme: journal
+    css: styles.css
+    toc: true
