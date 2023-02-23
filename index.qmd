@@ -29,7 +29,41 @@ jupyter:
 
 This capsule considers the make up of green belt areas in England using the Spatial Signatures [@fleischmann2022geographical]. 
 
+```{python}
+import pandas
+import geopandas
+import json
+import requests
+
+db = geopandas.read_parquet('ss_clipped.pq')
+db.info()
+```
+
 # National statistics
+
+```{python}
+areas = (
+    db
+    .assign(area=db.area/1e6)
+    .groupby('type')
+    ['area']
+    .sum()
+    .sort_values(ascending=False)
+)
+pandas.DataFrame(
+    {'Area (Sq.Km)': areas, '% of total area': areas * 100 / areas.sum()}
+).round(2)
+```
+
+```{python}
+#| code-overflow: wrap
+#| echo: fenced
+json.loads(
+    requests.get(
+        'https://ndownloader.figstatic.com/files/30935050'
+    ).content
+)['Urban buffer']
+```
 
 # Regional maps
 

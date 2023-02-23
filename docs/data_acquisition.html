@@ -161,10 +161,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#data-acquisition" id="toc-data-acquisition" class="nav-link active" data-scroll-target="#data-acquisition">Data Acquisition</a>
   <ul class="collapse">
   <li><a href="#greenbelts" id="toc-greenbelts" class="nav-link" data-scroll-target="#greenbelts">Greenbelts</a></li>
-  <li><a href="#signatures" id="toc-signatures" class="nav-link" data-scroll-target="#signatures">Signatures</a>
-  <ul class="collapse">
+  <li><a href="#signatures" id="toc-signatures" class="nav-link" data-scroll-target="#signatures">Signatures</a></li>
   <li><a href="#store-in-disk" id="toc-store-in-disk" class="nav-link" data-scroll-target="#store-in-disk">Store in disk</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -176,31 +174,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="data-acquisition" class="level1">
 <h1>Data Acquisition</h1>
-<div class="cell" data-execution_count="78">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas, pandas</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyogrio <span class="im">import</span> read_dataframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
 </div>
 <section id="greenbelts" class="level2">
 <h2 class="anchored" data-anchor-id="greenbelts">Greenbelts</h2>
 <p>Download if not available:</p>
-<div class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gb_url <span class="op">=</span> (</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://maps.communities.gov.uk/geoserver/dclg_inspire/ows'</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'?service=WFS&amp;version=2.0.0&amp;request=GetFeature&amp;'</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'typeName=dclg_inspire:England_Green_Belt_2017-18_WGS84&amp;'</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'outputFormat=json&amp;srsName=EPSG:27700'</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gb_url <span class="op">=</span> (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://maps.communities.gov.uk/geoserver/dclg_inspire/ows'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'?service=WFS&amp;version=2.0.0&amp;request=GetFeature&amp;'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'typeName=dclg_inspire:England_Green_Belt_2017-18_WGS84&amp;'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'outputFormat=json&amp;srsName=EPSG:27700'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read up:</p>
-<div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> read_dataframe(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    gb_url,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#where="GB_Name='Merseyside and Greater Manchester'"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> read_dataframe(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    gb_url,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#where="GB_Name='Merseyside and Greater Manchester'"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 4.46 s, sys: 491 ms, total: 4.95 s
-Wall time: 16.3 s</code></pre>
+<pre><code>CPU times: user 3.3 s, sys: 340 ms, total: 3.64 s
+Wall time: 14.8 s</code></pre>
 </div>
 </div>
 </section>
@@ -209,52 +210,117 @@ Wall time: 16.3 s</code></pre>
 <ul>
 <li>Pull data if not present</li>
 </ul>
-<div class="cell" data-tags="[]" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">open</span>(<span class="st">'signatures.gpkg'</span>).close()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span> wget https:<span class="op">//</span>figshare.com<span class="op">/</span>ndownloader<span class="op">/</span>files<span class="op">/</span><span class="dv">30904861</span> <span class="op">-</span>O signatures.gpkg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">open</span>(<span class="st">'signatures.gpkg'</span>).close()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span> wget https:<span class="op">//</span>figshare.com<span class="op">/</span>ndownloader<span class="op">/</span>files<span class="op">/</span><span class="dv">30904861</span> <span class="op">-</span>O signatures.gpkg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2023-02-16 10:27:30--  https://figshare.com/ndownloader/files/30904861
+Resolving figshare.com (figshare.com)... 46.137.13.70, 63.33.127.36, 2a05:d018:1f4:d003:2d08:7968:d247:2fb8, ...
+Connecting to figshare.com (figshare.com)|46.137.13.70|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/30904861/spatial_signatures_GB.gpkg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIYCQYOYV5JSSROOA/20230216/eu-west-1/s3/aws4_request&amp;X-Amz-Date=20230216T102730Z&amp;X-Amz-Expires=10&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=04d758bcf56e9e5628d023e3762610ae92bec7d0f1f592b2943805a8acfba07e [following]
+--2023-02-16 10:27:30--  https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/30904861/spatial_signatures_GB.gpkg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIYCQYOYV5JSSROOA/20230216/eu-west-1/s3/aws4_request&amp;X-Amz-Date=20230216T102730Z&amp;X-Amz-Expires=10&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=04d758bcf56e9e5628d023e3762610ae92bec7d0f1f592b2943805a8acfba07e
+Resolving s3-eu-west-1.amazonaws.com (s3-eu-west-1.amazonaws.com)... 52.218.105.122, 52.92.32.48, 52.92.34.24, ...
+Connecting to s3-eu-west-1.amazonaws.com (s3-eu-west-1.amazonaws.com)|52.218.105.122|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 909824000 (868M) [application/octet-stream]
+Saving to: ‘signatures.gpkg’
+
+signatures.gpkg     100%[===================&gt;] 867.68M  31.6MB/s    in 23s     
+
+2023-02-16 10:27:53 (37.9 MB/s) - ‘signatures.gpkg’ saved [909824000/909824000]
+</code></pre>
+</div>
 </div>
 <ul>
 <li>Read and clip</li>
 </ul>
-<div class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_clip(geom, p<span class="op">=</span><span class="st">'signatures.gpkg'</span>):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> geopandas.read_file(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        p, mask<span class="op">=</span>geom</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ).clip(geom)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.bag <span class="im">as</span> db</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.diagnostics <span class="im">import</span> ProgressBar</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>bag <span class="op">=</span> db.from_sequence(gb.geometry.tolist()).<span class="bu">map</span>(read_clip)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProgressBar():</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    clipped <span class="op">=</span> pandas.concat(bag.compute())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_clip(irow, p<span class="op">=</span><span class="st">'signatures.gpkg'</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    i, row <span class="op">=</span> irow</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    geom <span class="op">=</span> row.geometry</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> geopandas.read_file(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        p, mask<span class="op">=</span>geom</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    ).clip(geom)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> [<span class="st">'LA_Code'</span>, <span class="st">'LA_Name'</span>, <span class="st">'GB_Name'</span>]:</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        out[col] <span class="op">=</span> row[col]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.bag <span class="im">as</span> db</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.diagnostics <span class="im">import</span> ProgressBar</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>bag <span class="op">=</span> db.from_sequence(gb.iterrows()).<span class="bu">map</span>(read_clip)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProgressBar():</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    clipped <span class="op">=</span> pandas.concat(bag.compute())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[                                        ] | 0% Completed |  3.0s</code></pre>
+<pre><code>[                                        ] | 0% Completed |  2.0s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[                                        ] | 0% Completed |  2.2s</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
-ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[                                        ] | 0% Completed |  2.5s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
 ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[########################################] | 100% Completed |  3min 21.3s</code></pre>
+<pre><code>[                                        ] | 0% Completed |  2.7s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[                                        ] | 0% Completed |  3.2s</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[########################################] | 100% Completed |  3min 57.4s</code></pre>
 </div>
 </div>
-<section id="store-in-disk" class="level3">
-<h3 class="anchored" data-anchor-id="store-in-disk">Store in disk</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clipped.to_parquet(<span class="st">'ss_clipped.pq'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-
 </section>
+<section id="store-in-disk" class="level2">
+<h2 class="anchored" data-anchor-id="store-in-disk">Store in disk</h2>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    clipped</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    .drop(columns<span class="op">=</span>[<span class="st">'index'</span>, <span class="st">'id'</span>])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    .to_parquet(<span class="st">'ss_clipped.pq'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_96/2760393140.py:2: UserWarning: this is an initial implementation of Parquet/Feather file support and associated metadata.  This is tracking version 0.1.0 of the metadata specification at https://github.com/geopandas/geo-arrow-spec
+
+This metadata specification does not yet make stability promises.  We do not yet recommend using this in a production setting unless you are able to rewrite your Parquet/Feather files.
+
+To further ignore this warning, you can do: 
+import warnings; warnings.filterwarnings('ignore', message='.*initial implementation of Parquet.*')
+  clipped</code></pre>
+</div>
+</div>
+
+
 </section>
 </section>
 
