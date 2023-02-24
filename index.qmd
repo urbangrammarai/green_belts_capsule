@@ -2,6 +2,8 @@
 title: Urban Grammar - Green Belts Capsule
 subtitle: Exploring the make up of Green Belts
 author: Dani Arribas-Bel
+reference-location: margin
+citation-location: document
 format:
   html:
     theme: journal
@@ -27,21 +29,36 @@ jupyter:
 
 # Introduction
 
-This capsule considers the make up of green belt areas in England using the Spatial Signatures [@fleischmann2022geographical]. 
+This capsule considers the make up of green belt areas in England using the
+Spatial Signatures [@fleischmann2022geographical]. You can see more on the
+data used, and how they have been combined, in the [Data
+Aquisition](data_acquisition.ipynb) section. We reserve this document to
+present the main results.
 
 ```{python}
+import warnings
+warnings.filterwarnings("ignore")
+
 import pandas
 import geopandas
 import json
 import requests
 
 db = geopandas.read_parquet('ss_clipped.pq')
-db.info()
 ```
 
 # National statistics
 
+We begin with a table that summarises the form and function makeup of English
+green belts. To do this, we show the total area and the proportion of the
+total green belt land that is occupied by each of the 16 signature types.[^1]
+
+
+[^1]: You can see a brief description of these at [https://urbangrammarai.xyz/story/#ss](https://urbangrammarai.xyz/story/#ss)
+
+
 ```{python}
+#| fig-column: margin
 areas = (
     db
     .assign(area=db.area/1e6)
@@ -50,22 +67,46 @@ areas = (
     .sum()
     .sort_values(ascending=False)
 )
-pandas.DataFrame(
+tab = pandas.DataFrame(
     {'Area (Sq.Km)': areas, '% of total area': areas * 100 / areas.sum()}
-).round(2)
+)
+(
+    tab['% of total area']
+    .sort_values()
+    .plot.barh(
+        color='k', figsize=(2, 6), title='% of area by signature'
+    )
+    .set_axis_off()
+)
+tab.round(2)
 ```
 
+The most common class, "Urban buffer", is hardly a surprise since the notion
+of green belt is worked into its very definition. From the original signature
+descriptions[^2], Urban buffer is: 
+
+[^2]: [https://figshare.com/articles/dataset/Geographical_Characterisation_of_British_Urban_Form_and_Function_using_the_Spatial_Signatures_Framework/16691575/1?file=30935050](https://figshare.com/articles/dataset/Geographical_Characterisation_of_British_Urban_Form_and_Function_using_the_Spatial_Signatures_Framework/16691575/1?file=30935050)
+
 ```{python}
-#| code-overflow: wrap
-#| echo: fenced
-json.loads(
+#| echo: false
+blurb = json.loads(
     requests.get(
         'https://ndownloader.figstatic.com/files/30935050'
     ).content
 )['Urban buffer']
+from IPython.display import display, Markdown
+display(Markdown(f"> *{blurb}*"))
 ```
 
+What is a bit more interesting is how much (more than 40%) is occupied by
+"Countryside agriculture", and even "Open sprawl" (+5%).
+
 # Regional maps
+
+The proportions above are national aggregates, and it is possible that the
+signature mix varies across different urban areas. To explore this, below we
+present maps to explore five English cities.
+
 
 ## London
 ## Manchester

@@ -196,7 +196,7 @@ div.csl-indent {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -225,53 +225,50 @@ div.csl-indent {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This capsule considers the make up of green belt areas in England using the Spatial Signatures <span class="citation" data-cites="fleischmann2022geographical">(<a href="#ref-fleischmann2022geographical" role="doc-biblioref">Fleischmann and Arribas-Bel 2022</a>)</span>.</p>
+<p>This capsule considers the make up of green belt areas in England using the Spatial Signatures <span class="citation" data-cites="fleischmann2022geographical">(<a href="#ref-fleischmann2022geographical" role="doc-biblioref">Fleischmann and Arribas-Bel 2022</a>)</span>. You can see more on the data used, and how they have been combined, in the <a href="./data_acquisition.html">Data Aquisition</a> section. We reserve this document to present the main results.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> geopandas.read_parquet(<span class="st">'ss_clipped.pq'</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>db.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> geopandas.read_parquet(<span class="st">'ss_clipped.pq'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'geopandas.geodataframe.GeoDataFrame'&gt;
-RangeIndex: 8132 entries, 0 to 8131
-Data columns (total 6 columns):
- #   Column    Non-Null Count  Dtype   
----  ------    --------------  -----   
- 0   code      8132 non-null   object  
- 1   type      8132 non-null   object  
- 2   geometry  8132 non-null   geometry
- 3   LA_Code   8132 non-null   object  
- 4   LA_Name   8132 non-null   object  
- 5   GB_Name   8132 non-null   object  
-dtypes: geometry(1), object(5)
-memory usage: 381.3+ KB</code></pre>
-</div>
 </div>
 </section>
-<section id="national-statistics" class="level1">
+<section id="national-statistics" class="level1 page-columns page-full">
 <h1>National statistics</h1>
-<div class="cell" data-execution_count="2">
+<div class="page-columns page-full"><p>We begin with a table that summarises the form and function makeup of English green belts. To do this, we show the total area and the proportion of the total green belt land that is occupied by each of the 16 signature types.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;You can see a brief description of these at <a href="https://urbangrammarai.xyz/story/#ss">https://urbangrammarai.xyz/story/#ss</a></p></li></div></div>
+<div class="cell page-columns page-full" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> (</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    db</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    .assign(area<span class="op">=</span>db.area<span class="op">/</span><span class="fl">1e6</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'type'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'area'</span>]</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    .sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>pandas.DataFrame(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'Area (Sq.Km)'</span>: areas, <span class="st">'</span><span class="sc">% o</span><span class="st">f total area'</span>: areas <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> areas.<span class="bu">sum</span>()}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    db</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    .assign(area<span class="op">=</span>db.area<span class="op">/</span><span class="fl">1e6</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'type'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'area'</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    .sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tab <span class="op">=</span> pandas.DataFrame(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'Area (Sq.Km)'</span>: areas, <span class="st">'</span><span class="sc">% o</span><span class="st">f total area'</span>: areas <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> areas.<span class="bu">sum</span>()}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    tab[<span class="st">'</span><span class="sc">% o</span><span class="st">f total area'</span>]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    .sort_values()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    .plot.barh(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'k'</span>, figsize<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">6</span>), title<span class="op">=</span><span class="st">'</span><span class="sc">% o</span><span class="st">f area by signature'</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    .set_axis_off()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>tab.<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="101">
 
 <div>
 
@@ -358,26 +355,23 @@ memory usage: 381.3+ KB</code></pre>
 </table>
 </div>
 </div>
-</div>
+
+<div class="no-row-height column-margin column-container"><div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-3-output-2.png" width="201" height="474"></p>
+</div></div></div>
+<div class="page-columns page-full"><p>The most common class, “Urban buffer”, is hardly a surprise since the notion of green belt is worked into its very definition. From the original signature descriptions<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, Urban buffer is:</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;<a href="https://figshare.com/articles/dataset/Geographical_Characterisation_of_British_Urban_Form_and_Function_using_the_Spatial_Signatures_Framework/16691575/1?file=30935050">https://figshare.com/articles/dataset/Geographical_Characterisation_of_British_Urban_Form_and_Function_using_the_Spatial_Signatures_Framework/16691575/1?file=30935050</a></p></li></div></div>
 <div class="cell" data-execution_count="3">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-overflow: wrap</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>json.loads(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    requests.get(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'https://ndownloader.figstatic.com/files/30935050'</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ).content</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)[<span class="st">'Urban buffer'</span>]</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="46">
-<pre><code>'“Urban buffer” can be characterised as a green belt around cities. This signature includes mostly agricultural land in the immediate adjacency of towns and cities, often including edge development. It still feels more like countryside than urban, but these signatures are much smaller compared to other countryside types.'</code></pre>
+<div class="cell-output cell-output-display">
+<blockquote class="blockquote">
+<p><em>“Urban buffer” can be characterised as a green belt around cities. This signature includes mostly agricultural land in the immediate adjacency of towns and cities, often including edge development. It still feels more like countryside than urban, but these signatures are much smaller compared to other countryside types.</em></p>
+</blockquote>
 </div>
 </div>
+<p>What is a bit more interesting is how much (more than 40%) is occupied by “Countryside agriculture”, and even “Open sprawl” (+5%).</p>
 </section>
 <section id="regional-maps" class="level1">
 <h1>Regional maps</h1>
+<p>The proportions above are national aggregates, and it is possible that the signature mix varies across different urban areas. To explore this, below we present maps to explore five English cities.</p>
 <section id="london" class="level2">
 <h2 class="anchored" data-anchor-id="london">London</h2>
 </section>
@@ -400,6 +394,7 @@ memory usage: 381.3+ KB</code></pre>
 
 
 </section>
+
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-fleischmann2022geographical" class="csl-entry" role="doc-biblioentry">
