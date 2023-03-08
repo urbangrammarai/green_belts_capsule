@@ -1,0 +1,9 @@
+cff-version: 1.1.0
+message: "If you use this content, please cite it as below."
+authors:
+  - family-names: Dani
+    given-names: Arribas-Bel
+    orcid: https://orcid.org/0000-0002-6274-1619
+title: urbangrammarai/green_belts_capsule: v1.0 - Liftoff
+version: v1.0
+date-released: 2023-03-08
