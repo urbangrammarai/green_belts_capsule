@@ -43,6 +43,126 @@ import pandas
 import geopandas
 import json
 import requests
+import contextily
+import xyzservices
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.colors import to_hex
+import urbangrammar_graphics as ugg
+
+def build_tab(db):
+    areas = (
+      db
+      .assign(area=db.area/1e6)
+      .groupby('type')
+      ['area']
+      .sum()
+      .sort_values(ascending=False)
+    )
+    tab = pandas.DataFrame(
+      {'Area (Sq.Km)': areas, '% of total area': areas * 100 / areas.sum()}
+    )
+    return tab.round(2)
+
+def build_plot(tab, label=None, context=None, figsize=(2, 6)):
+    ttp = tab['% of total area'].sort_values()
+    ax = ttp.plot.barh(
+        color='k', 
+        figsize=figsize, 
+        title='% of area by signature',
+        label=label
+    )
+    if context is not None:
+        (
+            context
+            ['% of total area']
+            .reindex(ttp.index)
+            .plot.barh(
+                edgecolor='#8fa37e', 
+                facecolor='none', 
+                linewidth=2,
+                ax=ax,
+                label='National'
+            )
+        )
+    ax.set_axis_off()
+    if (label is not None) and (context is not None):
+        plt.legend(loc='lower right', frameon=False)
+    return ax
+
+def get_signature_colors(name=True):
+    """
+    Ported from here as unreleased:
+    https://github.com/urbangrammarai/graphics/blob/69bf5976a11c783fc8a27f59ef57efefbbee6aa8/urbangrammar_graphics/graphics.py#L207-L272
+    Get a dictionary of colors mapped to signatures classes of Great Britain
+    Parameters
+    ----------
+    name : bool
+        `True` maps to names, `False` maps to string keys (e.g. `'2_1'`)
+    Returns
+    -------
+    dict
+    """
+    cols = ugg.get_colormap(20, randomize=False).colors
+
+    key = {
+        "0_0": cols[16],
+        "1_0": cols[15],
+        "3_0": cols[9],
+        "4_0": cols[12],
+        "5_0": cols[21],
+        "6_0": cols[8],
+        "7_0": cols[4],
+        "8_0": cols[18],
+        "2_0": cols[6],
+        "2_1": cols[23],
+        "2_2": cols[19],
+        "9_0": cols[7],
+        "9_1": cols[3],
+        "9_2": cols[22],
+        "9_3": cols[0],  # outlier
+        "9_4": cols[11],
+        "9_5": cols[14],
+        "9_6": cols[0],  # outlier
+        "9_7": cols[0],  # outlier
+        "9_8": cols[0],  # outlier
+    }
+
+    if name:
+        types = {
+            "0_0": "Countryside agriculture",
+            "1_0": "Accessible suburbia",
+            "3_0": "Open sprawl",
+            "4_0": "Wild countryside",
+            "5_0": "Warehouse/Park land",
+            "6_0": "Gridded residential quarters",
+            "7_0": "Urban buffer",
+            "8_0": "Disconnected suburbia",
+            "2_0": "Dense residential neighbourhoods",
+            "2_1": "Connected residential neighbourhoods",
+            "2_2": "Dense urban neighbourhoods",
+            "9_0": "Local urbanity",
+            "9_1": "Concentrated urbanity",
+            "9_2": "Regional urbanity",
+            "9_4": "Metropolitan urbanity",
+            "9_5": "Hyper concentrated urbanity",
+            "9_3": "outlier",
+            "9_6": "outlier",
+            "9_7": "outlier",
+            "9_8": "outlier",
+        }
+
+        return {v: key[k] for k, v in types.items()}
+
+    return key
+sig_colors = get_signature_colors()
+
+def build_legend(types, sig_colors=sig_colors):
+    ps = []
+    for t in types:
+        type_patch = mpatches.Patch(color=sig_colors[t], label=t)
+        ps.append(type_patch)
+    return ps
 
 db = geopandas.read_parquet('ss_clipped.pq')
 ```
@@ -56,29 +176,11 @@ total green belt land that is occupied by each of the 16 signature types.[^1]
 
 [^1]: You can see a brief description of these at [https://urbangrammarai.xyz/story/#ss](https://urbangrammarai.xyz/story/#ss)
 
-
 ```{python}
 #| fig-column: margin
-areas = (
-    db
-    .assign(area=db.area/1e6)
-    .groupby('type')
-    ['area']
-    .sum()
-    .sort_values(ascending=False)
-)
-tab = pandas.DataFrame(
-    {'Area (Sq.Km)': areas, '% of total area': areas * 100 / areas.sum()}
-)
-(
-    tab['% of total area']
-    .sort_values()
-    .plot.barh(
-        color='k', figsize=(2, 6), title='% of area by signature'
-    )
-    .set_axis_off()
-)
-tab.round(2)
+tab = build_tab(db)
+build_plot(tab)
+tab
 ```
 
 The most common class, "Urban buffer", is hardly a surprise since the notion
@@ -107,12 +209,251 @@ The proportions above are national aggregates, and it is possible that the
 signature mix varies across different urban areas. To explore this, below we
 present maps to explore five English cities.
 
-
 ## London
-## Manchester
+
+::: {.panel-tabset}
+
+```{python}
+city = 'London'
+```
+
+
+### Proportions
+
+```{python}
+ax = build_plot(
+    build_tab(db.query(f'GB_Name == "{city}"')),
+    label=city,
+    context=tab,
+    figsize=(6, 6)
+)
+
+rects = ax.patches
+labels = [i.get_text() for i in ax.get_yticklabels()]
+for rect, label in zip(rects, labels):
+    w = rect.get_width()
+    ax.text(
+        w + 5,
+        rect.get_y() + rect.get_height() / 2,
+        label,
+        ha='left',
+        va='center'
+    )
+```
+
+### Map
+
+```{python}
+tmp = db.query(f'GB_Name == "{city}"')
+ax = tmp.plot(
+    color=tmp['type'].map(sig_colors).map(to_hex),
+    linewidth=0,
+    categorical=True,
+    figsize=(5, 6)
+)
+
+plt.legend(
+    handles=build_legend(tmp['type'].unique()), 
+    bbox_to_anchor=(1, 0.9), 
+    loc="upper left",
+    frameon=False
+)
+ax.set_axis_off()
+contextily.add_basemap(
+    ax, crs=db.crs, source=contextily.providers.CartoDB.DarkMatterNoLabels
+);
+```
+
+### Table
+
+```{python}
+build_tab(db.query(f'GB_Name == "{city}"'))
+```
+
+:::
+
+## Manchester & Liverpool
+
+```{python}
+city = 'Merseyside and Greater Manchester'
+```
+
+
+### Proportions
+
+```{python}
+ax = build_plot(
+    build_tab(db.query('GB_Name == "London"')),
+    label=city,
+    context=tab,
+    figsize=(6, 6)
+)
+
+rects = ax.patches
+labels = [i.get_text() for i in ax.get_yticklabels()]
+for rect, label in zip(rects, labels):
+    w = rect.get_width()
+    ax.text(
+        w + 5,
+        rect.get_y() + rect.get_height() / 2,
+        label,
+        ha='left',
+        va='center'
+    )
+```
+
+### Map
+
+```{python}
+tmp = db.query(f'GB_Name == "{city}"')
+ax = tmp.plot(
+    color=tmp['type'].map(sig_colors).map(to_hex),
+    linewidth=0,
+    categorical=True,
+    figsize=(5, 6)
+)
+
+plt.legend(
+    handles=build_legend(tmp['type'].unique()), 
+    bbox_to_anchor=(1, 0.9), 
+    loc="upper left",
+    frameon=False
+)
+ax.set_axis_off()
+contextily.add_basemap(
+    ax, crs=db.crs, source=contextily.providers.CartoDB.DarkMatterNoLabels
+);
+```
+
+### Table
+
+```{python}
+build_tab(db.query(f'GB_Name == "{city}"'))
+```
+
+:::
+
 ## Birmingham
-## Liverpool
+
+```{python}
+city = 'Birmingham'
+```
+
+
+### Proportions
+
+```{python}
+ax = build_plot(
+    build_tab(db.query('GB_Name == "London"')),
+    label=city,
+    context=tab,
+    figsize=(6, 6)
+)
+
+rects = ax.patches
+labels = [i.get_text() for i in ax.get_yticklabels()]
+for rect, label in zip(rects, labels):
+    w = rect.get_width()
+    ax.text(
+        w + 5,
+        rect.get_y() + rect.get_height() / 2,
+        label,
+        ha='left',
+        va='center'
+    )
+```
+
+### Map
+
+```{python}
+tmp = db.query(f'GB_Name == "{city}"')
+ax = tmp.plot(
+    color=tmp['type'].map(sig_colors).map(to_hex),
+    linewidth=0,
+    categorical=True,
+    figsize=(5, 6)
+)
+
+plt.legend(
+    handles=build_legend(tmp['type'].unique()), 
+    bbox_to_anchor=(1, 0.9), 
+    loc="upper left",
+    frameon=False
+)
+ax.set_axis_off()
+contextily.add_basemap(
+    ax, crs=db.crs, source=contextily.providers.CartoDB.DarkMatterNoLabels
+);
+```
+
+### Table
+
+```{python}
+build_tab(db.query(f'GB_Name == "{city}"'))
+```
+
+:::
+
 ## Newcastle
+
+```{python}
+city = 'Tyne and Wear'
+```
+
+
+### Proportions
+
+```{python}
+ax = build_plot(
+    build_tab(db.query('GB_Name == "London"')),
+    label=city,
+    context=tab,
+    figsize=(6, 6)
+)
+
+rects = ax.patches
+labels = [i.get_text() for i in ax.get_yticklabels()]
+for rect, label in zip(rects, labels):
+    w = rect.get_width()
+    ax.text(
+        w + 5,
+        rect.get_y() + rect.get_height() / 2,
+        label,
+        ha='left',
+        va='center'
+    )
+```
+
+### Map
+
+```{python}
+tmp = db.query(f'GB_Name == "{city}"')
+ax = tmp.plot(
+    color=tmp['type'].map(sig_colors).map(to_hex),
+    linewidth=0,
+    categorical=True,
+    figsize=(5, 6)
+)
+
+plt.legend(
+    handles=build_legend(tmp['type'].unique()), 
+    bbox_to_anchor=(1, 0.9), 
+    loc="upper left",
+    frameon=False
+)
+ax.set_axis_off()
+contextily.add_basemap(
+    ax, crs=db.crs, source=contextily.providers.CartoDB.DarkMatterNoLabels
+);
+```
+
+### Table
+
+```{python}
+build_tab(db.query(f'GB_Name == "{city}"'))
+```
+
+:::
 
 
 # References
