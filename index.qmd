@@ -274,6 +274,8 @@ build_tab(db.query(f'GB_Name == "{city}"'))
 
 ## Manchester & Liverpool
 
+::: {.panel-tabset}
+
 ```{python}
 city = 'Merseyside and Greater Manchester'
 ```
@@ -335,6 +337,8 @@ build_tab(db.query(f'GB_Name == "{city}"'))
 
 ## Birmingham
 
+::: {.panel-tabset}
+
 ```{python}
 city = 'Birmingham'
 ```
@@ -395,6 +399,8 @@ build_tab(db.query(f'GB_Name == "{city}"'))
 :::
 
 ## Newcastle
+
+::: {.panel-tabset}
 
 ```{python}
 city = 'Tyne and Wear'
