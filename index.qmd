@@ -2,6 +2,7 @@
 title: Urban Grammar - Green Belts Capsule
 subtitle: Exploring the make up of Green Belts
 author: Dani Arribas-Bel
+doi: 10.5281/zenodo.7709786
 reference-location: margin
 citation-location: document
 format:
@@ -10,9 +11,6 @@ format:
     css: styles.css
     code-fold: true
     fig-responsive: true
-  pdf:
-    execute:
-      echo: false
 bibliography: references.bib
 jupyter:
   jupytext:
@@ -29,13 +27,17 @@ jupyter:
 
 # Introduction
 
-This capsule considers the make up of green belt areas in England using the
+This capsule[^0] considers the make up of green belt areas in England using the
 Spatial Signatures [@fleischmann2022geographical]. You can see more on the
 data used, and how they have been combined, in the [Data
 Aquisition](data_acquisition.ipynb) section. We reserve this document to
 present the main results.
 
+[^0]: [![](https://zenodo.org/badge/578993743.svg)](https://zenodo.org/badge/latestdoi/578993743)
+
 ```{python}
+#| jupyter: {source_hidden: true}
+#| tags: []
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -195,13 +197,30 @@ blurb = json.loads(
     requests.get(
         'https://ndownloader.figstatic.com/files/30935050'
     ).content
-)['Urban buffer']
+)
 from IPython.display import display, Markdown
-display(Markdown(f"> *{blurb}*"))
+display(Markdown(f"> *{blurb['Urban buffer']}*"))
 ```
 
-What is a bit more interesting is how much (more than 40%) is occupied by
-"Countryside agriculture", and even "Open sprawl" (+5%).
+However, less than half of green belts are classified as "Urban buffer". The rest is a combination of other classes, including "Countryside agriculture" (>40%), and "Open Sprawl" (>5%), as well as a long tail of other signatures with smaller contributions. To help the reader get a sense of what these classes represent, we include here the definitions (pen portraits) of the two most relevant ones:
+
+- Countryside agriculture
+
+```{python}
+#| echo: false
+display(Markdown(f"> *{blurb['Countryside agriculture']}*"))
+```
+
+- Open Sprawl
+
+```{python}
+#| echo: false
+display(Markdown(f"> *{blurb['Open sprawl']}*"))
+```
+
+The reader can refer to this additional document for descriptions of all the classes:
+
+> [`https://urbangrammarai.xyz/story/#ss`](https://urbangrammarai.xyz/story/#ss)
 
 # Regional maps
 
